@@ -1,0 +1,21 @@
+README.md
+  s_cc0c8cd6c4a9a2::t_5a75e2c6fd5c20 9-10
+entrypoints/ui.content.ts
+  s_cc0c8cd6c4a9a2::t_a6158c573fd084 153-157,179-183,294-314,318
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "a37dba323f855fdff42f2497443ecf8657a734a3",
+  "prompts": {},
+  "sessions": {
+    "s_cc0c8cd6c4a9a2": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fc67f-a488-7ef3-94d2-218247255ac7",
+        "model": "unknown"
+      },
+      "human_author": "Fayaz Ahmed <fayazara@gmail.com>"
+    }
+  }
+}
