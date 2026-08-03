@@ -1,0 +1,27 @@
+README.md
+  s_d476a981f4c0ea::t_5641679ae4b1d4 13
+entrypoints/popup/App.css
+  s_d476a981f4c0ea::t_bd86634664bc38 76-92
+entrypoints/popup/App.tsx
+  s_d476a981f4c0ea::t_41d018238e6106 144-164
+entrypoints/ui.content.ts
+  s_d476a981f4c0ea::t_88be430b7fd39b 6,8,31-32,82-85,131-531,566,587-591,595-600,602,690-691,710-711,732-733,755-758
+utils/settings.ts
+  s_d476a981f4c0ea::t_539e1d9c35801d 40-53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "2381294d4abdea7823153adc6ef1880a3496be6b",
+  "prompts": {},
+  "sessions": {
+    "s_d476a981f4c0ea": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_0428d859effeyVG8CxrVDf2332",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Fayaz Ahmed <fayazara@gmail.com>"
+    }
+  }
+}
