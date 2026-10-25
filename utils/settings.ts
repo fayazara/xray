@@ -7,6 +7,12 @@ import { storage } from '#imports';
  */
 export type DisplayMode = 'full' | 'compact';
 
+/** Master switch: when off, XRay adds nothing to the page. */
+export const enabledItem = storage.defineItem<boolean>(
+  'local:enabled',
+  { fallback: true },
+);
+
 export const displayModeItem = storage.defineItem<DisplayMode>(
   'local:displayMode',
   { fallback: 'full' },

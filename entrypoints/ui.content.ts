@@ -1,4 +1,5 @@
 import {
+  enabledItem,
   displayModeItem,
   newAccountEnabledItem,
   newAccountDaysItem,
@@ -24,6 +25,7 @@ export default defineContentScript({
     // screen_name (lowercased) -> info
     const users = new Map<string, UserInfo>();
 
+    let enabled = await enabledItem.getValue();
     let displayMode: DisplayMode = await displayModeItem.getValue();
     let newAccountEnabled = await newAccountEnabledItem.getValue();
     let newAccountDays = await newAccountDaysItem.getValue();
@@ -63,6 +65,11 @@ export default defineContentScript({
     });
 
     // ---- react to settings changing ------------------------------------
+    enabledItem.watch((v) => {
+      enabled = v;
+      if (enabled) scheduleInject();
+      else removeAllBadges();
+    });
     displayModeItem.watch((v) => {
       displayMode = v;
       scheduleInject();
@@ -734,7 +741,18 @@ export default defineContentScript({
       }
     }
 
+    // Strip everything XRay added, used when the extension is switched off.
+    function removeAllBadges() {
+      closePersonalEditor();
+      document
+        .querySelectorAll(
+          '.xray-followers, .xray-newacct, .xray-followsyou, .xray-personal-context',
+        )
+        .forEach((el) => el.remove());
+    }
+
     function injectBadges() {
+      if (!enabled) return;
       injectNames();
       injectReposts();
       injectUserCells();

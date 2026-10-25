@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
+  enabledItem,
   displayModeItem,
   newAccountEnabledItem,
   newAccountDaysItem,
@@ -12,14 +13,17 @@ import './App.css';
 function Toggle({
   checked,
   onChange,
+  label,
 }: {
   checked: boolean;
   onChange: (value: boolean) => void;
+  label?: string;
 }) {
   return (
     <button
       role="switch"
       aria-checked={checked}
+      aria-label={label}
       className={`toggle ${checked ? 'on' : ''}`}
       onClick={() => onChange(!checked)}
     >
@@ -29,12 +33,14 @@ function Toggle({
 }
 
 function App() {
+  const [enabled, setEnabled] = useState(true);
   const [mode, setMode] = useState<DisplayMode>('full');
   const [newEnabled, setNewEnabled] = useState(false);
   const [newDays, setNewDays] = useState(30);
   const [followsYou, setFollowsYou] = useState(false);
 
   useEffect(() => {
+    enabledItem.getValue().then(setEnabled);
     displayModeItem.getValue().then(setMode);
     newAccountEnabledItem.getValue().then(setNewEnabled);
     newAccountDaysItem.getValue().then(setNewDays);
@@ -43,10 +49,26 @@ function App() {
 
   return (
     <div className="xray-popup">
-      <h1>XRay</h1>
-      <p className="subtitle">Profile insights in your timeline</p>
+      <div className="row header-row">
+        <div className="row-text">
+          <h1>XRay</h1>
+          <p className="subtitle">
+            {enabled ? 'Profile insights in your timeline' : 'Paused on all tabs'}
+          </p>
+        </div>
+        <Toggle
+          checked={enabled}
+          label="Enable XRay"
+          onChange={(v) => {
+            setEnabled(v);
+            enabledItem.setValue(v);
+          }}
+        />
+      </div>
 
       <hr className="divider" />
+
+      <fieldset className={`settings ${enabled ? '' : 'disabled'}`} disabled={!enabled}>
 
       <div className="field">
         <span className="field-label">Display style</span>
@@ -161,6 +183,7 @@ function App() {
           <span className="hint">Click any XRay follower count to add one</span>
         </div>
       </div>
+      </fieldset>
 
       <hr className="divider" />
 

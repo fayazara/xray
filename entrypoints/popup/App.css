@@ -208,3 +208,21 @@ hr.divider {
 .footer a:hover {
   color: var(--fg);
 }
+
+/* Master on/off */
+.header-row {
+  align-items: flex-start;
+}
+
+.settings {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  transition: opacity 150ms ease;
+}
+
+.settings.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
